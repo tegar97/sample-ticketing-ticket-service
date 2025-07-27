@@ -67,6 +67,7 @@ func (s *TicketService) UseTicket(ticketCode string) (*models.TicketWithEvent, e
 		return nil, errors.New("ticket not found")
 	}
 
+	//
 	if ticket.Status != "valid" {
 		return nil, errors.New("ticket is not valid")
 	}
