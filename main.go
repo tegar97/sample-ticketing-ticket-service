@@ -40,6 +40,23 @@ func main() {
 		c.Next()
 	})
 
+	// Root route
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Ticketing Service is running",
+			"service": "ticketing-service",
+			"version": "v1",
+		})
+	})
+
+	// Health check route
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"status": "healthy",
+			"service": "ticketing-service",
+		})
+	})
+
 	api := r.Group("/api/v1")
 	{
 		api.POST("/tickets/generate", ticketHandler.GenerateTickets)
